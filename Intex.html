@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nikku ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#c471ed);
+    color:white;
+}
+
+.screen{
+    width:90%;
+    max-width:400px;
+    text-align:center;
+    animation:fade .8s ease;
+}
+
+h1{font-size:32px}
+
+p{
+    font-size:18px;
+    line-height:1.6;
+}
+
+button{
+    border:0;
+    padding:15px 28px;
+    border-radius:30px;
+    font-size:18px;
+    font-weight:bold;
+    color:#ff4f81;
+    background:white;
+    box-shadow:0 8px 25px #0004;
+    cursor:pointer;
+}
+
+button:active{transform:scale(.92)}
+
+.gift{
+    font-size:100px;
+    cursor:pointer;
+    animation:bounce 1.2s infinite;
+}
+
+@keyframes bounce{
+    50%{transform:translateY(-15px) rotate(3deg)}
+}
+
+.letter{
+    background:white;
+    color:#333;
+    padding:28px 22px;
+    border-radius:20px;
+    box-shadow:0 15px 40px #0005;
+    transform:scale(0);
+    animation:openLetter .8s forwards;
+}
+
+.letter h2{color:#ff4f81}
+
+@keyframes openLetter{
+    to{transform:scale(1)}
+}
+
+.heart{
+    position:fixed;
+    bottom:-40px;
+    font-size:25px;
+    animation:float 4s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes float{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div class="screen" id="one">
+
+    <div class="gift">🎁</div>
+
+    <h1>Hey Nikku ❤️</h1>
+
+    <p>
+        Tumhare liye ek chhota sa surprise hai... 👀
+        <br><br>
+        But tumhe khud open karna padega 😌
+    </p>
+
+    <button onclick="openGift()">
+        Open Me 🎁
+    </button>
+
+</div>
+
+
+<!-- SCREEN 2 -->
+<div class="screen hidden" id="two">
+
+    <h1>Nikku... 😳❤️</h1>
+
+    <p>
+        Itni jaldi nahi 😂
+        <br><br>
+        Abhi asli surprise baaki hai...
+        <br><br>
+        Ek baar aur click karo 👀
+    </p>
+
+    <button onclick="nextStep()">
+        Really? 👀❤️
+    </button>
+
+</div>
+
+
+<!-- SCREEN 3 -->
+<div class="screen hidden" id="three">
+
+    <div class="letter">
+
+        <div style="font-size:55px">❤️</div>
+
+        <h2>For My Nikku ❤️</h2>
+
+        <p>
+            Nikku...
+            <br><br>
+
+            Pata nahi ye baat saamne se
+            kitni achhe se bol paata hoon,
+            isliye aaj dil ki baat likh raha hoon.
+            <br><br>
+
+            <b>I LOVE YOU ❤️</b>
+            <br><br>
+
+            Tum mere liye bahut special ho.
+            Agar kabhi meri kisi baat se tum hurt hui ho,
+            toh I'm really sorry 🥺
+            <br><br>
+
+            Bas ek baat yaad rakhna...
+            <br><br>
+
+            <b>I really care about you. 🫶❤️</b>
+        </p>
+
+        <button onclick="loveExplosion()">
+            One Last Click ❤️
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openGift(){
+
+    document.getElementById("one").classList.add("hidden");
+
+    document.getElementById("two").classList.remove("hidden");
+
+    hearts(15);
+}
+
+
+function nextStep(){
+
+    document.getElementById("two").classList.add("hidden");
+
+    document.getElementById("three").classList.remove("hidden");
+
+    hearts(25);
+}
+
+
+function loveExplosion(){
+
+    hearts(100);
+
+    setTimeout(()=>{
+        alert("Nikku ❤️ I LOVE YOU 🫶");
+    },800);
+
+}
+
+
+function hearts(amount){
+
+    for(let i=0;i<amount;i++){
+
+        setTimeout(()=>{
+
+            const h=document.createElement("div");
+
+            h.className="heart";
+
+            const emojis=[
+                "❤️","💖","💕","💗","💘","🥰"
+            ];
+
+            h.innerHTML=
+                emojis[Math.floor(Math.random()*emojis.length)];
+
+            h.style.left=
+                Math.random()*100+"vw";
+
+            h.style.animationDuration=
+                (2+Math.random()*3)+"s";
+
+            document.body.appendChild(h);
+
+            setTimeout(()=>{
+                h.remove();
+            },5000);
+
+        },i*40);
+    }
+}
+
+</script>
+
+</body>
+</html>
